@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "200040224684",
+    "project_id": "meet-you-c0bfb",
+    "storage_bucket": "meet-you-c0bfb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:200040224684:android:1719c8889fa06888358c09",
+        "android_client_info": {
+          "package_name": "com.example.loginpage"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoNqmC2KKRj2EEnlYd8LooMn5GoVkATWA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
