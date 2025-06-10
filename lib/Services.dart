@@ -20,10 +20,9 @@ Future<void> Register({
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text("User creation successful"),
-        backgroundColor: Colors.green, // ✅ Change color
-        behavior: SnackBarBehavior.floating, // ✅ Floating above screen
+        backgroundColor: Colors.green, 
+        behavior: SnackBarBehavior.floating, 
         shape: RoundedRectangleBorder(
-          // ✅ Rounded corners
           borderRadius: BorderRadius.circular(10),
         ),
       ),
