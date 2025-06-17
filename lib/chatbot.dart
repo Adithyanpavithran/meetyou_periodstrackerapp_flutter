@@ -147,19 +147,18 @@ class _ChatbotState extends State<Chatbot> {
     return Align(
       alignment: user ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
+        margin: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+        padding: EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: user ? Color(0xFFFAD0C4) : Color(0xFFFAD0C4),
+          borderRadius: BorderRadius.circular(30),
+        ),
         child: Text(
           buildmessage["text"] ?? '',
           style: TextStyle(
             color: user ? const Color.fromARGB(255, 1, 1, 1) : Colors.black,
             fontSize: 24,
           ),
-        ),
-
-        margin: EdgeInsets.symmetric(vertical: 6, horizontal: 12),
-        padding: EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: user ? Color(0xFFFAD0C4) : Color(0xFFFAD0C4),
-          borderRadius: BorderRadius.circular(30),
         ),
       ),
     );

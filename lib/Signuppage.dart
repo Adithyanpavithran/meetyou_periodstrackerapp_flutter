@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:loginpage/Loginpage.dart';
 import 'package:loginpage/Services.dart';
+import 'package:loginpage/Homepage.dart'; // <-- Make sure you import your homepage
 
 class Signuppage extends StatefulWidget {
   const Signuppage({super.key});
@@ -13,6 +14,9 @@ class _SignuppageState extends State<Signuppage> {
   TextEditingController Namecontroller = TextEditingController();
   TextEditingController Emailcontroller = TextEditingController();
   TextEditingController Passwordcontroller = TextEditingController();
+
+  bool isLoading = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,7 +63,6 @@ class _SignuppageState extends State<Signuppage> {
                   ),
                   const SizedBox(height: 20),
 
-                  // Email Field
                   TextField(
                     controller: Emailcontroller,
                     decoration: InputDecoration(
@@ -72,7 +75,6 @@ class _SignuppageState extends State<Signuppage> {
                   ),
                   const SizedBox(height: 20),
 
-                  // Password Field
                   TextField(
                     controller: Passwordcontroller,
                     obscureText: true,
@@ -89,19 +91,39 @@ class _SignuppageState extends State<Signuppage> {
                   ),
                   const SizedBox(height: 10),
 
-                  // Forgot Password
-
-                  // Login Button
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () {
-                        Register(
+                      onPressed: () async {
+                        setState(() {
+                          isLoading = true;
+                        });
+
+                        String? result = await Register(
                           Username: Namecontroller.text,
                           Email: Emailcontroller.text,
                           password: Passwordcontroller.text,
                           context: context,
                         );
+
+                        setState(() {
+                          isLoading = false;
+                        });
+
+                        if (result == "Success") {
+                          // Navigate to Homepage with name & email
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Homepage(
+                                username: Namecontroller.text,
+                                email: Emailcontroller.text,
+                              ),
+                            ),
+                          );
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(result ?? "Registration failed")));
+                        }
                       },
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(vertical: 16),
@@ -109,36 +131,26 @@ class _SignuppageState extends State<Signuppage> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-
-                      child: const Text(
-                        "Sign up",
-                        style: TextStyle(fontSize: 18),
-                      ),
+                      child: isLoading
+                          ? CircularProgressIndicator(color: Colors.white)
+                          : const Text(
+                              "Sign up",
+                              style: TextStyle(fontSize: 18),
+                            ),
                     ),
                   ),
                   const SizedBox(height: 16),
 
-                  // Facebook Button
-
-                  // Sign Up Link
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        "I'm already a user,",
-                        style: TextStyle(fontSize: 15),
-                      ),
+                      Text("I'm already a user,", style: TextStyle(fontSize: 15)),
                       TextButton(
-                        child: Text(
-                          "Login",
-                          style: TextStyle(color: Colors.pinkAccent),
-                        ),
+                        child: Text("Login", style: TextStyle(color: Colors.pinkAccent)),
                         onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(
-                              builder: (context) => LoginPage(),
-                            ),
+                            MaterialPageRoute(builder: (context) => LoginPage()),
                           );
                         },
                       ),
