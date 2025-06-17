@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loginpage/Forgot.dart';
 import 'package:loginpage/Loginpage.dart';
+import 'package:loginpage/calender.dart';
 import 'package:loginpage/chatbot.dart';
 import 'package:loginpage/updateprofile.dart';
 
@@ -83,9 +84,20 @@ class _HomepageState extends State<Homepage> {
               },
             ),
             ListTile(
-              title: Text("Calender"),
-              leading: Icon(Icons.calendar_month),
-            ),
+  title: Text("Calendar"),
+  leading: Icon(Icons.calendar_month),
+  onTap: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => CalendarPage(
+          username: widget.username,
+          email: widget.email,
+        ),
+      ),
+    );
+  },
+),
             ListTile(title: Text("Your Cart"), leading: Icon(Icons.trolley)),
             ListTile(title: Text("Orders"), leading: Icon(Icons.done)),
             ListTile(title: Text("Settings"), leading: Icon(Icons.settings)),
