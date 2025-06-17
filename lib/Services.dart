@@ -20,28 +20,18 @@ Future<void> Register({
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text("User creation successful"),
-        backgroundColor: Colors.green, 
-        behavior: SnackBarBehavior.floating, 
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
+        backgroundColor: Colors.green,
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       ),
     );
   } catch (e) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(e.toString()),
-        backgroundColor: const Color.fromARGB(
-          255,
-          241,
-          19,
-          19,
-        ), // ✅ Change color
-        behavior: SnackBarBehavior.floating, // ✅ Floating above screen
-        shape: RoundedRectangleBorder(
-          // ✅ Rounded corners
-          borderRadius: BorderRadius.circular(10),
-        ),
+        backgroundColor: const Color.fromARGB(255, 241, 19, 19),
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       ),
     );
   }
@@ -70,7 +60,9 @@ Future<void> login({
     );
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => Homepage()),
+      MaterialPageRoute(
+        builder: (context) => Homepage(username: 'username', email: 'email'),
+      ),
     );
   } catch (e) {
     ScaffoldMessenger.of(context).showSnackBar(
@@ -91,6 +83,7 @@ Future<void> login({
     );
   }
 }
+
 Future<void> forget({
   required String email,
   required BuildContext context,
